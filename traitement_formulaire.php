@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'votre-mail@gmail.com';        // ⚠️ Remplace par ton Gmail
-        $mail->Password   = 'xxxxxxxxxxxxxxxx';        // ⚠️ Remplace par ton mot de passe 16 caractères
+        $mail->Password   = 'votre-mot-de-passe';        // ⚠️ Remplace par ton mot de passe 16 caractères
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         $mail->CharSet    = 'UTF-8';
