@@ -1,0 +1,15 @@
+{
+    "name": "lesud/site-pisciniste",
+    "autoload": {
+        "psr-4": {
+            "Lesud\\SitePisciniste\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "olirobz31",
+            "email": "olirobz31@gmail.com"
+        }
+    ],
+    "require": {}
+}
