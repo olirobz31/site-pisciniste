@@ -30,15 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 );
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'votre-mail@gmail.com';        // ⚠️ Remplace par ton Gmail
-        $mail->Password   = 'votre-mot-de-passe';        // ⚠️ Remplace par ton mot de passe 16 caractères
+        $mail->Username   = $config['smtp_user'];        // ⚠️ Remplace par ton Gmail
+        $mail->Password   = $config['smtp_pass'];        // ⚠️ Remplace par ton mot de passe 16 caractères
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         $mail->CharSet    = 'UTF-8';
 
         // Destinataire et expéditeur
-        $mail->setFrom('votre-mail@gmail.com', 'Formulaire Contact');  // ⚠️ Remplace par ton Gmail
-        $mail->addAddress('votre-mail@gmail.com');                      // ⚠️ Remplace par ton Gmail
+        $mail->setFrom($config['smtp_user'], 'Formulaire Contact');  // ⚠️ Remplace par ton Gmail
+        $mail->addAddress($config['smtp_user']);                      // ⚠️ Remplace par ton Gmail
         $mail->addReplyTo($email, "$prenom $nom");
 
         // Contenu de l'email
