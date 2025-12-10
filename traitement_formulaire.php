@@ -6,6 +6,8 @@ require 'PHPMailer/Exception.php';
 require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 
+$config = require 'config.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Récupération des données du formulaire
