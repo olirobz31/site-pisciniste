@@ -6,6 +6,7 @@ require 'PHPMailer/Exception.php';
 require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 
+// On récupère les secrets depuis le fichier config.php
 $config = require 'config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,24 +22,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         // Configuration du serveur SMTP
         $mail->isSMTP();
-        $mail->SMTPOptions = array(
-    'ssl' => array(
-        'verify_peer' => false,
-        'verify_peer_name' => false,
-        'allow_self_signed' => true
-    )
-);
+        $mail->SMTPOptions = [
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            ]
+        ];
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = $config['smtp_user'];        // ⚠️ Remplace par ton Gmail
-        $mail->Password   = $config['smtp_pass'];        // ⚠️ Remplace par ton mot de passe 16 caractères
+        $mail->Username   = $config['smtp_user'];   // depuis config.php
+        $mail->Password   = $config['smtp_pass'];   // depuis config.php
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         $mail->CharSet    = 'UTF-8';
 
         // Destinataire et expéditeur
-        $mail->setFrom($config['smtp_user'], 'Formulaire Contact');  // ⚠️ Remplace par ton Gmail
-        $mail->addAddress($config['smtp_user']);                      // ⚠️ Remplace par ton Gmail
+        $mail->setFrom($config['smtp_user'], 'Formulaire Contact');
+        $mail->addAddress($config['smtp_user']);
         $mail->addReplyTo($email, "$prenom $nom");
 
         // Contenu de l'email
