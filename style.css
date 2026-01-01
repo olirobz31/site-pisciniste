@@ -252,6 +252,28 @@ a:hover {
   border-radius: 8px;
 }
 
+/* Section Google Maps */
+
+.map-section {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.map-section h2 {
+  color: #0077b6;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+}
+
+.map-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 2px solid #0077b6;
+}
+
 /*Page services*/
 
 .intro-services {
@@ -451,6 +473,19 @@ RESPONSIVE GÉNÉRAL POUR TOUT LE SITE
     width: 300px;
     border: 1px solid black;
     border-radius: 8px;
+  }
+
+  /* Carte Google Maps responsive */
+  .map-section {
+    padding: 15px;
+  }
+
+  .map-section h2 {
+    font-size: 1.4em;
+  }
+
+  .map-container iframe {
+    height: 350px;
   }
 
   /* Services */
