@@ -1,0 +1,241 @@
+/* ================================================
+   POPUP DEVIS GRATUIT - Styles
+   ================================================ */
+
+/* Overlay sombre */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Container du popup */
+.popup-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 119, 190, 0.3);
+    z-index: 9999;
+    width: 90%;
+    max-width: 450px;
+    padding: 35px 30px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.popup-container.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Bouton de fermeture */
+.popup-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.popup-close:hover {
+    background-color: #0077be;
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* En-tête du popup */
+.popup-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.popup-header h2 {
+    color: #0077be;
+    font-size: 1.6em;
+    margin: 0 0 8px 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+.popup-header p {
+    color: #666;
+    font-size: 0.95em;
+    margin: 0;
+    padding: 0;
+}
+
+/* Formulaire */
+.popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.popup-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-form label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.popup-form input,
+.popup-form textarea {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: "Montserrat", sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+}
+
+.popup-form input:focus,
+.popup-form textarea:focus {
+    outline: none;
+    border-color: #0077be;
+    box-shadow: 0 0 0 3px rgba(0, 119, 190, 0.15);
+}
+
+.popup-form input::placeholder,
+.popup-form textarea::placeholder {
+    color: #aaa;
+}
+
+.popup-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Bouton d'envoi */
+.popup-submit {
+    background: linear-gradient(135deg, #0077be 0%, #005a8f 100%);
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: "Montserrat", sans-serif;
+    margin-top: 5px;
+}
+
+.popup-submit:hover {
+    background: linear-gradient(135deg, #005a8f 0%, #004570 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 119, 190, 0.4);
+}
+
+.popup-submit:active {
+    transform: translateY(0);
+}
+
+/* Décoration */
+.popup-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #0077be, #00a8e8, #0077be);
+    border-radius: 16px 16px 0 0;
+}
+
+/* Message de succès */
+.popup-success {
+    text-align: center;
+    padding: 20px;
+}
+
+.popup-success h3 {
+    color: #0077be;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.popup-success p {
+    color: #666;
+    margin: 0;
+    padding: 0;
+}
+
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+
+@media (max-width: 600px) {
+    .popup-container {
+        width: 95%;
+        padding: 25px 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .popup-header h2 {
+        font-size: 1.3em;
+    }
+
+    .popup-form input,
+    .popup-form textarea {
+        padding: 10px 12px;
+        font-size: 0.95em;
+    }
+
+    .popup-submit {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+
+    .popup-close {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 400px) {
+    .popup-container {
+        padding: 20px 15px;
+    }
+
+    .popup-header h2 {
+        font-size: 1.2em;
+    }
+
+    .popup-form {
+        gap: 12px;
+    }
+}
