@@ -51,10 +51,11 @@
                     <h2>Demandez votre devis gratuit</h2>
                     <p>Recevez une estimation personnalisée sous 24h</p>
                 </div>
-                <form class="popup-form" id="popupForm">
+                <form class="popup-form" id="popupForm" action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="9a01e0ea-0cc2-487d-8e01-f760a34845cf">
                     <input type="hidden" name="subject" value="Nouvelle demande de devis (popup)">
                     <input type="hidden" name="from_name" value="Popup Devis - Site Piscine">
+                    <input type="hidden" name="redirect" value="https://olirobz31.github.io/site-pisciniste/merci.html">
                     <div class="form-group">
                         <label for="popupNom">Nom *</label>
                         <input type="text" id="popupNom" name="nom" placeholder="Votre nom" required>
@@ -106,60 +107,9 @@
 
     // Gérer la soumission du formulaire
     function handleSubmit(e) {
-        e.preventDefault();
-
-        const form = e.target;
-        const formData = new FormData(form);
-        const container = document.getElementById('popupContainer');
-        const submitBtn = form.querySelector('.popup-submit');
-
-        // Récupérer le nom pour le message de succès
-        const nom = formData.get('nom');
-
-        // Désactiver le bouton pendant l'envoi
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Envoi en cours...';
-
-        // Supprimer le botcheck du FormData
-        formData.delete('botcheck');
-
-        // Envoyer via Web3Forms (FormData natif comme le formulaire contact)
-        fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            console.log('Réponse brute:', response);
-            return response.json();
-        })
-        .then(data => {
-            console.log('Données reçues:', data);
-            if (data.success) {
-                // Afficher message de succès
-                container.innerHTML = `
-                    <button class="popup-close" id="popupCloseSuccess" aria-label="Fermer">&times;</button>
-                    <div class="popup-success">
-                        <h3>Merci ${nom} !</h3>
-                        <p>Votre demande a bien été envoyée.<br>Nous vous recontacterons très rapidement.</p>
-                    </div>
-                `;
-
-                // Réattacher l'événement de fermeture
-                document.getElementById('popupCloseSuccess').addEventListener('click', closePopup);
-
-                // Fermer automatiquement après 3 secondes
-                setTimeout(closePopup, 3000);
-            } else {
-                console.log('Erreur Web3Forms:', data.message);
-                throw new Error(data.message || 'Erreur lors de l\'envoi');
-            }
-        })
-        .catch(error => {
-            console.error('Erreur:', error);
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Envoyer ma demande';
-            alert('Une erreur est survenue. Veuillez réessayer ou nous contacter directement.');
-        });
+        // Définir le cookie avant la soumission (l'utilisateur sera redirigé)
+        setCookie(COOKIE_NAME, 'true', COOKIE_DURATION);
+        // Laisser le formulaire se soumettre normalement (pas de e.preventDefault())
     }
 
     // Initialisation
