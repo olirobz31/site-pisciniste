@@ -121,10 +121,12 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Envoi en cours...';
 
-        // Convertir FormData en objet JSON
+        // Convertir FormData en objet JSON (sans le botcheck)
         const jsonData = {};
         formData.forEach((value, key) => {
-            jsonData[key] = value;
+            if (key !== 'botcheck') {
+                jsonData[key] = value;
+            }
         });
 
         // Envoyer via Web3Forms
