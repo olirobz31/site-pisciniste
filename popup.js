@@ -55,7 +55,6 @@
                     <input type="hidden" name="access_key" value="9a01e0ea-0cc2-487d-8e01-f760a34845cf">
                     <input type="hidden" name="subject" value="Nouvelle demande de devis (popup)">
                     <input type="hidden" name="from_name" value="Popup Devis - Site Piscine">
-                    <input type="checkbox" name="botcheck" style="display:none !important" tabindex="-1" autocomplete="off">
                     <div class="form-group">
                         <label for="popupNom">Nom *</label>
                         <input type="text" id="popupNom" name="nom" placeholder="Votre nom" required>
@@ -121,22 +120,13 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Envoi en cours...';
 
-        // Convertir FormData en objet JSON (sans le botcheck)
-        const jsonData = {};
-        formData.forEach((value, key) => {
-            if (key !== 'botcheck') {
-                jsonData[key] = value;
-            }
-        });
+        // Supprimer le botcheck du FormData
+        formData.delete('botcheck');
 
-        // Envoyer via Web3Forms
+        // Envoyer via Web3Forms (FormData natif comme le formulaire contact)
         fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(jsonData)
+            body: formData
         })
         .then(response => {
             console.log('Réponse brute:', response);
