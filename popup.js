@@ -136,8 +136,12 @@
             },
             body: JSON.stringify(jsonData)
         })
-        .then(response => response.json())
+        .then(response => {
+            console.log('Réponse brute:', response);
+            return response.json();
+        })
         .then(data => {
+            console.log('Données reçues:', data);
             if (data.success) {
                 // Afficher message de succès
                 container.innerHTML = `
@@ -154,7 +158,8 @@
                 // Fermer automatiquement après 3 secondes
                 setTimeout(closePopup, 3000);
             } else {
-                throw new Error('Erreur lors de l\'envoi');
+                console.log('Erreur Web3Forms:', data.message);
+                throw new Error(data.message || 'Erreur lors de l\'envoi');
             }
         })
         .catch(error => {
