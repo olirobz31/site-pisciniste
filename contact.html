@@ -70,17 +70,6 @@
     }
     </script>
     
-    <style>
-        /* Style pour le honeypot - champ invisible pour piéger les robots */
-        .honeypot-field {
-            position: absolute !important;
-            left: -9999px !important;
-            width: 1px !important;
-            height: 1px !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -128,13 +117,6 @@
                     <!-- Redirection après envoi -->
                     <input type="hidden" name="redirect" value="https://olirobz31.github.io/site-pisciniste/merci.html">
                     
-                    <!-- Protection anti-spam : honeypot (champ invisible pour piéger les robots) -->
-                    <input type="checkbox" name="botcheck" class="honeypot-field" tabindex="-1" autocomplete="off">
-                    
-                    <!-- Activation du captcha Web3Forms (recommandé) -->
-                    <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
-                    
-                    <!-- Protection CSRF (token unique par session) -->
                     <input type="hidden" name="from_name" value="Site Piscine Cajarc">
                     
                     <!-- Champs visibles du formulaire -->
@@ -190,45 +172,31 @@
     &copy; 2025 Piscine et Entretien – Tous droits réservés
 </footer>
 
-<!-- Script de validation côté client (sécurité supplémentaire) -->
+<!-- Script de validation côté client -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('.formulaire-contact');
-    
-    // Validation supplémentaire avant envoi
+
     form.addEventListener('submit', function(e) {
         const nom = document.getElementById('nom').value.trim();
         const prenom = document.getElementById('prenom').value.trim();
         const email = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
-        
+
         // Vérifier que les champs ne sont pas vides
         if (!nom || !prenom || !email || !message) {
             e.preventDefault();
             alert('Merci de remplir tous les champs obligatoires.');
             return false;
         }
-        
+
         // Vérifier la longueur du message
         if (message.length < 10) {
             e.preventDefault();
             alert('Votre message doit contenir au moins 10 caractères.');
             return false;
         }
-        
-        // Bloquer les soumissions trop rapides (moins de 3 secondes = probable bot)
-        const formLoadTime = sessionStorage.getItem('formLoadTime');
-        const currentTime = new Date().getTime();
-        
-        if (formLoadTime && (currentTime - formLoadTime) < 3000) {
-            e.preventDefault();
-            alert('Merci de prendre le temps de remplir le formulaire.');
-            return false;
-        }
     });
-    
-    // Enregistrer le moment où le formulaire est chargé
-    sessionStorage.setItem('formLoadTime', new Date().getTime());
 });
 </script>
 </body>
