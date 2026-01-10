@@ -72,6 +72,7 @@
                         <label for="popupMessage">Votre projet</label>
                         <textarea id="popupMessage" name="message" placeholder="Décrivez brièvement votre projet piscine..."></textarea>
                     </div>
+                    <div class="h-captcha" data-captcha="true"></div>
                     <button type="submit" class="popup-submit">Envoyer ma demande</button>
                 </form>
             </div>
@@ -115,6 +116,13 @@
     // Initialisation
     function init() {
         if (!shouldShowPopup()) return;
+
+        // Charger le script hCaptcha de Web3Forms
+        const hcaptchaScript = document.createElement('script');
+        hcaptchaScript.src = 'https://web3forms.com/client/script.js';
+        hcaptchaScript.async = true;
+        hcaptchaScript.defer = true;
+        document.head.appendChild(hcaptchaScript);
 
         // Injecter le HTML
         const popupWrapper = document.createElement('div');
