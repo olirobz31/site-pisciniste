@@ -52,7 +52,7 @@
                     <p>Recevez une estimation personnalisée sous 24h</p>
                 </div>
                 <form class="popup-form" id="popupForm" action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="9a01e0ea-0cc2-487d-8e01-f760a34845cf">
+                    <input type="hidden" name="access_key" value="ad5d2a38-56a7-4499-b0fb-0e412b64df9a">
                     <input type="hidden" name="subject" value="Nouvelle demande de devis (popup)">
                     <input type="hidden" name="from_name" value="Popup Devis - Site Piscine">
                     <input type="hidden" name="redirect" value="https://olirobz31.github.io/site-pisciniste/merci.html">
